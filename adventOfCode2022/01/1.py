@@ -1,12 +1,9 @@
-data = open("input.txt", "r").read()
-groups_by_elf = data.split("\n\n")
-cals_by_elf = [sum(int(cals) for cals in g.split("\n") if cals != "") for g in groups_by_elf]
+data = open("./input.txt").read().split("\n\n")
+calls_by_elf = [sum(map(int, g.splitlines())) for g in data]
 
-n_max = 3
-maxs = []
-while (n_max):
-    n_max -= 1
-    maxs.append(max(cals_by_elf))
-    cals_by_elf.pop(cals_by_elf.index(maxs[-1]))
+# Part 1
+print(max(calls_by_elf)) # 66487
 
-print(sum(maxs))
+# Part 2
+print(sum(sorted(calls_by_elf)[-3:])) #197301
+

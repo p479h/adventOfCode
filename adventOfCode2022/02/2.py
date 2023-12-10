@@ -8,18 +8,11 @@ points = {
     "Z": 3
     }
 
+lines = open("input.txt").read().splitlines()
 ipoints = 0
-with open("input.txt", "r") as f:
-    for l in f.readlines():
-        o, i = l.strip().split()
-        o, i = [points[k] for k in [o, i]]
-        if i == o: # Draw 
-            ipoints += 3
-
-        elif o%3 + 1 == i:# i wins
-            ipoints += 6
-
-        ipoints += i
+for l in lines:
+    o, i = map(points.get, l.split())
+    ipoints += (3 if i==o else 6 if o%3+1==i else 0) + i
 print("The total number of points part 1 is %i" % ipoints)
 
 # Part 2
@@ -27,21 +20,18 @@ print("The total number of points part 1 is %i" % ipoints)
 # If i has to win, o%3 + 1 == i
 # Else we tie
 ipoints = 0
-with open("input.txt", "r") as f:
-    for l in f.readlines():
-        o, i = l.strip().split()
-        o, i = [points[k] for k in [o, i]]
-        # Assigning i
-        if i == 1: # I need to lose (o wins)
-            i = (o-2)%3 + 1
-        elif i == 2: # I need to draw
-            i = o
-            ipoints += 3
-        else: # I need to win
-            i = o%3 + 1
-            ipoints += 6
-        ipoints += i
-        
+for l in lines:
+    o, i = map(points.get, l.split())
+    # Assigning i
+    if i == 1: # I need to lose (o wins)
+        i = (o-2)%3 + 1
+    elif i == 2: # I need to draw
+        i = o
+        ipoints += 3
+    else: # I need to win
+        i = o%3 + 1
+        ipoints += 6
+    ipoints += i
 print(ipoints)
     
             
