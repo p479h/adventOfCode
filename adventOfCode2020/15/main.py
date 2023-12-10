@@ -11,7 +11,7 @@ N =  30000000
 for i in range(len(nums),N+1):
     # Last spoken number 
     n = turns[i-1][1]
-    # Finding out if number was spoken before last time(last said set to -1)
+    # Finding out if number was spoken before last time (last said set to -1)
     if (last_turn := turns[last_spoken[n]])[2] != -1: 
         # Getting difference in turns
         turn_before = turns[last_turn[2]]
