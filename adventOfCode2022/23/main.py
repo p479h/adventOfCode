@@ -126,7 +126,6 @@ def move_elves(elves: iter, field: iter) -> None:
 		elf["ij"] = elf["next_ij"]
 		elf["nswe"] = elf["next_movement"] = None
 		
-		
 	
 if __name__ == "__main__":
 	main()
