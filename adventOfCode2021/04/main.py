@@ -1,8 +1,8 @@
 import numpy as np
 
-f =  open("./input/input.txt")
-numbers = np.array(f.readline().strip().split(","),int)
-tables = np.array([[l.strip().split() for l in L.strip().split("\n")] for L in f.read().strip().split("\n\n")], int)
+numbers, *tables = open("./input/input.txt").read().split("\n\n")
+numbers = np.array(numbers.split(","),int)
+tables = np.array([[l.split() for l in table.split("\n")] for table in tables], int)
 t = tables.copy()
 s = t.shape
 def get_winner(table: iter) -> iter:

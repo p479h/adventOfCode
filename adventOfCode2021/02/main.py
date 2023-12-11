@@ -2,7 +2,7 @@
 addt = lambda t0, t1: (t0[0]+t1[0],t0[1]+t1[1])
 mul = lambda v, t: (t[0]*v, t[1]*v)
 directions = {"forward": (1, 0), "down": (0, 1), "up": (0, -1)}
-lines = [l.strip().split() for l in open("./input/input.txt") if l.strip()]
+lines = tuple(map(str.split, open("./input/input.txt").read().splitlines()))
 commands = [mul(int(l[1]),directions[l[0]]) for l in lines]
 x = (0, 0)
 for c in commands:

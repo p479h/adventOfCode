@@ -2,7 +2,7 @@ import numpy as np
 
 # part 1
 bintodec = lambda s: int("".join(s.astype(str)),2)
-lines = [l.strip() for l in open("./input/input.txt") if l.strip()] 
+lines = open("./input/input.txt").read().splitlines()
 data = np.array([list(l) for l in lines], int)
 gamma = (data.sum(0) > data.shape[0]//2).astype(int)
 eps = np.logical_not(gamma).astype(int)
