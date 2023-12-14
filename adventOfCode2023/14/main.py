@@ -1,5 +1,5 @@
 from collections import defaultdict
-from copy import deepcopy as dp
+from copy import deepcopy 
 
 def R(t): # Rotates 90 deg clockwise
     return [list(r[::-1]) for r in zip(*t)]
@@ -15,10 +15,13 @@ def cycle(t):
         t[:] = R(fall_up(t))
     return t
 
+def calc_load(t):
+    return sum(len(t)-i for i,r in enumerate(t) for j,c in enumerate(r) if c == "O")
+
 def main():
-    data = list(map(list,open("./data.txt").read().splitlines()))
+    T = list(map(list,open("./data.txt").read().splitlines()))
     # Part 1
-    s = sum(len(data)-i for i,r in enumerate(fall_up(dp(data))) for j,c in enumerate(r) if c == "O")
+    s = calc_load(fall_up(deepcopy(T)))
     print("Part 1 solution: %i"%s)
     
     # Part 2 
@@ -29,9 +32,9 @@ def main():
     # Finding the repeats
     loads = defaultdict(lambda : [])
     for i in range(300):
-        data = cycle(data)
+        T = cycle(T)
         if i%2==0: # Avoids repeating numbers
-            loads[sum(len(data)-i for i,r in enumerate(data) for j,c in enumerate(r) if c == "O")].append(i)
+            loads[calc_load(T)].append(i)
             v, js = max(loads.items(), key=lambda e: len(e[1]))
             if len(js) > 2:
                 break
@@ -39,8 +42,8 @@ def main():
         raise Exception("Repeating pattern not found")
     # Last few cycles 
     for _ in range((1000000000-js[-1])%(js[-1] - js[-2])):
-        data = cycle(data)
-        v = sum(len(data)-i for i,r in enumerate(data) for j,c in enumerate(r) if c == "O")
+        T = cycle(T)
+        v = calc_load(T)
     print("Part 2 solution: %i"%v)
 
     return 0
