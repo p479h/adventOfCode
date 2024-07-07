@@ -1,0 +1,1 @@
+In this repository you can find my solutions to Advent of Code. Note that a few of the solutions to the most difficult exercises were taken from Hb4Q on reddit. Such solutions have comments crediting the author for their solution. 
